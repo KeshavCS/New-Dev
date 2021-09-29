@@ -1,0 +1,27 @@
+<!-- String Concatination -->
+{%- assign fname = "Keshav" -%}
+{%- assign lname = "Kumar" -%}
+
+{%- capture fullname -%}
+  {{ fname }} {{ lname }}
+{%- endcapture -%}
+
+<p>Full Name:</p> {{ fullname }} <br>
+
+
+
+<!-- Substring -->
+{%- assign video-url = "https://www.youtube.com/watch?v=pvDJ_d1n5mI&t=12" -%}
+
+{%- if video-url contains "youtube.com/watch"-%}
+
+  {%- if video-url contains "&" -%}
+    {%- assign video-id = video-url | split: '?v=' | last -%}
+    {%- assign video-id = video-id | split: '&' | first -%}
+  {%- else -%}
+    {%- assign video-id = video-url | split: '?v=' | last -%}  
+  {%- endif -%}
+
+  <iframe src="//youtube.com/embed/{{ video-id }}?rel=0&vq=720" width="425" height="250" frameborder="0"></iframe>
+{%- endif -%}
+

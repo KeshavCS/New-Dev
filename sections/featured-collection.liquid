@@ -1,0 +1,27 @@
+{%- assign collection = section.settings.collection-to-display -%}
+{%- for product in collection.products -%}
+  {% include 'product-item' %}
+{%- else -%}
+  <p>no matches</p>
+{%- endfor -%}
+
+{% schema %}
+
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "collection",
+      "id"  : "collection-to-display",
+      "label" : "Collection to Display"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Custom Content",
+      "name": "Featured Collection"
+    }
+  ]
+}
+
+{% endschema %}

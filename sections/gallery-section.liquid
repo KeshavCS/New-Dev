@@ -1,0 +1,84 @@
+<div class="gallery">
+  {%- for block in section.blocks -%}
+    <div class="image-wrap" style="background: url('{{ block.settings.block-image | img_url: '500x' }}'); background-size: cover;"> </div>
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name" : "Gallery Section",
+  "settings": [
+    {
+      "type"  : "select",
+      "id"    : "images-per-row",
+      "label" : "Images per Row",
+      "options" : [
+        {
+          "value" : "49%",
+          "label" : "2 per row"
+        },
+        {
+          "value" : "33%",
+          "label" : "3 per row"
+        },
+        {
+          "value" : "24%",
+          "label" : "4 per row"
+        },
+        {
+          "value" : "19%",
+          "label" : "5 per row"
+        }
+      ],
+      "default": "33%"
+    },
+    {
+      "type": "select",
+      "id" : "image-height",
+      "label" : "Image Height",
+      "options" : [
+        {
+          "value": "300px",
+          "label": "300px"
+        },
+        {
+          "value": "400px",
+          "label": "400px"
+        },
+        {
+          "value": "500px",
+          "label": "500px"
+        }
+      ],
+      "default": "500px"
+    }
+  ],
+  "blocks" : [
+    {
+      "name": "Block Image",
+      "type": "image",
+      "settings": [
+        {
+          "type"  : "image_picker",
+          "id"    : "block-image",
+          "label" : "Block Image" 
+        }
+      ]
+    }  
+  ],
+  "presets": [
+    {
+      "category": "Custom Content",
+      "name":"Gallery"
+    }
+  ]
+}
+{% endschema %}
+
+{% style %}
+  .image-wrap{
+    display: inline-block;
+    height: {{ section.settings.image-height }};
+    width: {{ section.settings.images-per-row }};
+  }  
+{% endstyle %}
